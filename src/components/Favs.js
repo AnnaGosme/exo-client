@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Box } from '@chakra-ui/react';
 import Card from './Card';
 
 const Favs = () => {
@@ -24,6 +25,7 @@ const Favs = () => {
 
   return (
     <>
+    <Box width="100%" alignItems="center" bgGradient='linear(to-r, #000000, #5d0076)'>
       <h2>Favorite Movies</h2>
       {favMovies.map((fav) => {
         return (
@@ -38,6 +40,7 @@ const Favs = () => {
           />
         );
       })}
+      </Box>
     </>
   );
 };

@@ -1,18 +1,21 @@
-import { useState } from 'react';
+import { useState} from 'react';
+import { FcLikePlaceholder } from 'react-icons/fc';
+import { FcLike } from 'react-icons/fc';
 
 const NewFav = (props) => {
   const [newFav, setNewFav] = useState();
+  const [heart, setHeart] = useState('yes');
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const movie = {
-        id: props.id,
-        title: props.title, 
-        poster_path: props.poster_path, 
-        overview: props.overview, 
-        vote_average: props.vote_average,  
-        release_date: props.release_date
+      id: props.id,
+      title: props.title,
+      poster_path: props.poster_path,
+      overview: props.overview,
+      vote_average: props.vote_average,
+      release_date: props.release_date,
     };
 
     fetch('http://localhost:3000/favorites', {
@@ -30,11 +33,17 @@ const NewFav = (props) => {
           );
       }
       setNewFav(res.data);
+      setHeart(!heart);
     });
-    console.log('new fav', newFav);
-    console.log('movie', movie);
+
   };
-  return <button onClick={handleSubmit}>Add to Favorites</button>;
+  return (
+    <>
+      <button aria-label="Add to favorite movies" onClick={handleSubmit}>
+        {heart === 'yes' ? <FcLikePlaceholder /> : <FcLike />}
+      </button>
+    </>
+  );
 };
 
 export default NewFav;

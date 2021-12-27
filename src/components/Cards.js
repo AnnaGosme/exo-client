@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Container, Flex, VStack, Grid } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import Search from './Search';
 import Card from './Card';
 
@@ -40,6 +40,7 @@ const Cards = () => {
 
   return (
     <>
+    <Box width="100%" display="flex" alignItems="center" bgGradient='linear(to-r, #000000, #5d0076)'>
       <div className="search">
         <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       </div>
@@ -51,6 +52,7 @@ const Cards = () => {
           .map((movie) => <Card key={movie.id} {...movie} />)
           .slice(0, 10)}
       </div>
+      </Box>
     </>
   );
 };

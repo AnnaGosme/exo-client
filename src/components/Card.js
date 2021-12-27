@@ -1,4 +1,5 @@
-import NewFav from './NewFav';
+import {Flex, Stack, Text} from "@chakra-ui/react";
+import CreateFav from './CreateFav';
 
 const IMG_API = 'https://image.tmdb.org/t/p/w200';
 
@@ -12,13 +13,17 @@ const Card = ({
 }) => {
   return (
     <>
+    <Flex width="80%" display="flex" alignItems="center">
       <div className="movie">
+        <Text color='white'>
+      <Stack direction="row" p={5}>
         <img src={IMG_API + poster_path} alt={title} />
         <div className="movie-info">
           <h3>{title}</h3>
+          {/* {vote_average === 0 ? vote_average="Not yet rated" : */}
           <span>{vote_average} / 10</span>
           <h5>Released on: {release_date}</h5>
-          <NewFav
+          <CreateFav
             key={id}
             id={id}
             title={title}
@@ -29,7 +34,10 @@ const Card = ({
           />
           <div className="movie-overview">{overview}</div>
         </div>
+      </Stack>
+          </Text>
       </div>
+      </Flex>
     </>
   );
 };
