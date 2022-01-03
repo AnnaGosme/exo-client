@@ -31,25 +31,41 @@ const Cards = () => {
   const filteredMovies = filterMovies(movies, searchQuery);
 
   useEffect(() => {
-    fetch(FEATURED_API)
-      .then((res) => res.json())
-      .then((data) => {
-        setMovies(data.results);
-      });
+    getMovies()
   }, []);
+
+  const getMovies = () => {
+    fetch(FEATURED_API)
+    .then((res) => res.json())
+    .then((data) => {
+      setMovies(data.results);
+    });
+  }
+
+  const deleteMovie =(id) => {
+    console.log('delete', id);
+    fetch(`http://localhost:3000/favorites/${id}`, {
+      method: 'DELETE',
+    }).then((result) => {
+ 
+        console.log('resp', result);
+        getMovies();
+   
+    });
+  }
 
   return (
     <>
-    <Box width="100%" display="flex" alignItems="center" bgGradient='linear(to-r, #000000, #5d0076)'>
       <div className="search">
         <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       </div>
+    <Box width="100%" display="flex" alignItems="center" bgGradient='linear(to-r, #000000, #5d0076)'>
       <div className="movie-container">
         {filteredMovies
           .sort(function (a, b) {
             return new Date(b.release_date) - new Date(a.release_date);
           })
-          .map((movie) => <Card key={movie.id} {...movie} />)
+          .map((movie) => <Card key={movie.id} {...movie} getMovies={getMovies} deleteMovie={deleteMovie} />)
           .slice(0, 10)}
       </div>
       </Box>

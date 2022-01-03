@@ -26,9 +26,9 @@ const Favs = () => {
   return (
     <>
     <Box width="100%" alignItems="center" bgGradient='linear(to-r, #000000, #5d0076)'>
-      <h2>Favorite Movies</h2>
       {favMovies.map((fav) => {
         return (
+          <>
           <Card
             key={fav.id}
             id={fav.id}
@@ -38,6 +38,7 @@ const Favs = () => {
             vote_average={fav.vote_average}
             release_date={fav.release_date}
           />
+          </>
         );
       })}
       </Box>

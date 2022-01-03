@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useState } from 'react';
 import { FcLikePlaceholder } from 'react-icons/fc';
 import { FcLike } from 'react-icons/fc';
 
@@ -6,7 +6,7 @@ const NewFav = (props) => {
   const [newFav, setNewFav] = useState();
   const [heart, setHeart] = useState('yes');
 
-  const handleSubmit = (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
 
     const movie = {
@@ -35,11 +35,10 @@ const NewFav = (props) => {
       setNewFav(res.data);
       setHeart(!heart);
     });
-
   };
   return (
     <>
-      <button aria-label="Add to favorite movies" onClick={handleSubmit}>
+      <button aria-label="Add to favorite movies" onClick={handleClick}>
         {heart === 'yes' ? <FcLikePlaceholder /> : <FcLike />}
       </button>
     </>

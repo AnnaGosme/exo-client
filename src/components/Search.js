@@ -1,14 +1,15 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import { Box } from '@chakra-ui/react';
 
-const Search = ({searchQuery, setSearchQuery}) => {
-    const history = useNavigate();
-    const onSubmit = e => {
-        history.push(`?=${searchQuery}`)
-        e.preventDefault();
-    }
+const Search = ({ searchQuery, setSearchQuery }) => {
+  const history = useNavigate();
+  const onSubmit = (e) => {
+    history.push(`?=${searchQuery}`);
+    e.preventDefault();
+  };
 
   return (
-    <div className="search">
+    <Box bg="black" textColor="white" p={4}>
       <form action="/" method="get" autoComplete="off" onSubmit={onSubmit}>
         <label htmlFor="header-search">
           <span
@@ -26,10 +27,17 @@ const Search = ({searchQuery, setSearchQuery}) => {
             Search movies
           </span>
         </label>
-        <input name="s" type="text" defaultValue={searchQuery} onInput={e => setSearchQuery(e.target.value)} placeholder="Search..." />
-        <button type="submit">Search</button>
+        <input
+        style={{color: 'black', padding: '5px'}}
+          name="s"
+          type="text"
+          defaultValue={searchQuery}
+          onInput={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search..."
+        />
+        <button type="submit" style={{padding:'5px'}}>Search</button>
       </form>
-    </div>
+    </Box>
   );
 };
 
