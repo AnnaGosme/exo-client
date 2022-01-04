@@ -3,6 +3,7 @@ import { Box } from '@chakra-ui/react';
 import Search from './Search';
 import Card from './Card';
 
+
 // const FEATURED_API =
 //   'https://api.themoviedb.org/3/movie/now_playing?api_key=fb55081276ff4308dc10d1c41ca8ec83&language=en-EN';
 
@@ -42,17 +43,6 @@ const Cards = () => {
     });
   }
 
-  const deleteMovie =(id) => {
-    console.log('delete', id);
-    fetch(`http://localhost:3000/favorites/${id}`, {
-      method: 'DELETE',
-    }).then((result) => {
- 
-        console.log('resp', result);
-        getMovies();
-   
-    });
-  }
 
   return (
     <>
@@ -65,7 +55,7 @@ const Cards = () => {
           .sort(function (a, b) {
             return new Date(b.release_date) - new Date(a.release_date);
           })
-          .map((movie) => <Card key={movie.id} {...movie} getMovies={getMovies} deleteMovie={deleteMovie} />)
+          .map((movie) => <Card key={movie.id} {...movie} getMovies={getMovies} />)
           .slice(0, 10)}
       </div>
       </Box>

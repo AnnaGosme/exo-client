@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Box, Spacer, Flex, Image } from '@chakra-ui/react';
 import Cards from './components/Cards';
 import Favs from './components/Favs';
-import movies from './components/movies.png';
+import movies from './assets/movies.png';
 
 function App() {
   return (

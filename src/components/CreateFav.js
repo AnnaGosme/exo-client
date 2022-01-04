@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { FcLikePlaceholder } from 'react-icons/fc';
-import { FcLike } from 'react-icons/fc';
+import {Button} from '@chakra-ui/react';
 
 const NewFav = (props) => {
   const [newFav, setNewFav] = useState();
-  const [heart, setHeart] = useState('yes');
+  const [favorited, setFavorited] = useState(false);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -33,14 +32,14 @@ const NewFav = (props) => {
           );
       }
       setNewFav(res.data);
-      setHeart(!heart);
+      setFavorited(true)
     });
   };
   return (
     <>
-      <button aria-label="Add to favorite movies" onClick={handleClick}>
-        {heart === 'yes' ? <FcLikePlaceholder /> : <FcLike />}
-      </button>
+      <Button variant="outline" aria-label="Add to favorite movies" onClick={handleClick}>
+        {favorited ? "Added to favorite movies" : "Add to favorite movies"}
+      </Button>
     </>
   );
 };

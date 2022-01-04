@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Box } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 import Card from './Card';
+import Axios from 'axios';
 
-const Favs = () => {
+const Favs = ({movies, setMovies}) => {
   const [favs, setFavs] = useState([]);
 
   useEffect(() => {
@@ -20,7 +21,14 @@ const Favs = () => {
   }, []);
 
   const favMovies = Object.values(favs)
-  console.log(favMovies)
+
+  const deleteMovie = (id) => {
+    Axios.delete(`http://localhost:3000/favorites/${id}`).then(() => {
+      setFavs(favs.filter((value) => {
+        return value.id !== id;
+      }))
+    })
+  }
 
 
   return (
@@ -38,6 +46,7 @@ const Favs = () => {
             vote_average={fav.vote_average}
             release_date={fav.release_date}
           />
+          <Button variant='outline' onClick={() => {deleteMovie(fav.id)}} style={{color: 'white', marginLeft: '20px', marginBottom:'20px'}}>Remove from favorites</Button>
           </>
         );
       })}
