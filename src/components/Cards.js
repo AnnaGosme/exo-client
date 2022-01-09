@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Box } from '@chakra-ui/react';
+import Axios from 'axios';
 import Search from './Search';
 import Card from './Card';
 
@@ -36,11 +37,8 @@ const Cards = () => {
   }, []);
 
   const getMovies = () => {
-    fetch(FEATURED_API)
-    .then((res) => res.json())
-    .then((data) => {
-      setMovies(data.results);
-    });
+    Axios.get(FEATURED_API).then(res =>{ 
+    setMovies(res.data.results)})
   }
 
 
